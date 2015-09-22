@@ -1,0 +1,14 @@
+<div class="col-md-8 col-md-offset-2">
+  <form class="form" name="askForm" ng-submit="ask()">
+  <div class="form-group">
+    <label for="title">title</label>
+    <input type="text" name="title" class="form-control" placeholder="enter a title" ng-model="data.title" />
+  </div>
+  <div class="form-group">
+    <label for="body">question</label>
+    <textarea name="body" placeholder="describe your question" ng-model="data.body" class="form-control" rows="15"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">ask</button>
+  </form>
+</div>
+
