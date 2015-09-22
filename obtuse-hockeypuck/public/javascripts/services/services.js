@@ -2,19 +2,23 @@ angular.module('stackOverCho.services', [])
   .factory('Register', ['$http', '$location', '$window', function ($http, $location, $window) {
     return {
       register: function (data) {
-        return $http.post('/api/register', {
+        return $http({
+          method: 'POST',
+          url: 'api/register',
           data: data
         }).then(function (res) {
           console.log(res);
           if (res.data === 'yes') {
             console.log(res.data);
-            $window.location.pathname( "/" );
+            $location.pathname( "/" );
+            return;
           }
         }, function (res) {
           if (res.data === 'no') {
             console.log(res.data);
             console.log('FAILURE!');
              $location.path( "/register" );
+             return;
           }
         });
       }
@@ -25,7 +29,7 @@ angular.module('stackOverCho.services', [])
       login: function (data) {
         return $http({
           method: 'POST',
-          url: '/api/login',
+          url: 'api/login',
           data: data
         }).then(function (res) {
           console.log(res.data);
@@ -36,20 +40,7 @@ angular.module('stackOverCho.services', [])
       }
     };
   }])
-  .factory('Ask', ['$http', function ($http) {
-    return {
-      ask: function (data) {
-        return $http({
-          url: '/api/questions',
-          method: 'POST',
-          data: data
-        }).then(function (res) {
-          console.log(res);
-        });
-      }
-    };
-  }])
-  .factory('Questions', ['$http', function ($http) {
+  .factory('Questions', ['$http', '$location', function ($http, $location) {
     return {
       questions: function (data) {
         return $http({
@@ -57,10 +48,40 @@ angular.module('stackOverCho.services', [])
           url: 'api/questions',
           data: data
         }).then(function (res) {
-          console.log(res);
+          console.log(res.data);
           data.users = res.data;
           return data;
+        });
+      },
+      ask: function (data) {
+        return $http({
+          url: 'api/questions',
+          method: 'POST',
+          data: data
+        }).then(function (res) {
+          $location.path('/');
+        });
+      },
+      getQuestion: function (question, data) {
+        return $http({
+          url: 'api/questions/' + question
+        }).then(function (res) {
+          data.question = res.data;
+
         });
       }
     };
   }])
+  .factory('GetUser', ['$http', function($http){
+    return {
+      getUser: function (username, data) {
+        return $http({
+          url: 'api/users/' + username,
+          method: 'GET'
+        }).then(function (res) {
+          data.questions = res.data;
+          return data;
+        });
+      }
+    };
+  }]);

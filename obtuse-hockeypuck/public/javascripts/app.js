@@ -1,4 +1,4 @@
-angular.module('stackOverCho', ['stackOverCho.questions', 'stackOverCho.login', 'stackOverCho.register', 'stackOverCho.ask', 'stackOverCho.services', 'ngRoute'])
+angular.module('stackOverCho', ['stackOverCho.questions', 'stackOverCho.login', 'stackOverCho.register', 'stackOverCho.ask', 'stackOverCho.user', 'stackOverCho.question', 'stackOverCho.services', 'ngRoute'])
   .config(function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/', {
@@ -16,6 +16,14 @@ angular.module('stackOverCho', ['stackOverCho.questions', 'stackOverCho.login', 
       .when('/ask', {
         templateUrl: 'javascripts/ask/ask.html',
         controller: 'AskController'
+      })
+      .when('/users/:user_id', {
+        templateUrl: 'javascripts/user/user.html',
+        controller: 'UserController'
+      })
+      .when('/questions/:question', {
+        templateUrl: 'javascripts/question/question.html',
+        controller: 'QuestionController'
       });
   });
 

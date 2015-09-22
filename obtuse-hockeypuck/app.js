@@ -41,6 +41,7 @@ app.use('/api/users', users);
 app.use('/api/login', login);
 app.use('/api/register', register);
 app.use('/api/questions', questions);
+app.use('/api/answers', answers);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

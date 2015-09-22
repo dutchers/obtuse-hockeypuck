@@ -5,13 +5,14 @@ var conString = "postgres://alexhutchison:mvp@localhost/stackovercho";
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  pg.connect(conString, function(err, client, done) {
     var results = [];
-    var query = client.queery("SELECT * FROM questions");
+  pg.connect(conString, function(err, client, done) {
+    var query = client.query("SELECT questions.id, questions.title, questions.votes, users.username, users.name FROM questions, users WHERE users.id = questions.user_id;");
     query.on('row', function(row) {
       results.push(row);
     });
     query.on('end', function () {
+      console.log(results);
       res.json(results);
     });
   });
@@ -20,15 +21,36 @@ router.get('/', function(req, res, next) {
 router.post('/', function (req, res) {
   var title = req.body.title;
   var body = req.body.body;
+  var userId = req.session.user.id;
   var votes = 0;
-  console.log(title, body);
+  console.log(title, body, userId);
+
+
   pg.connect(conString, function(err, client, done) {
-    client.query("INSERT INTO questions (title, body, votes) VALUES ('" + title + "', '" + body + "', '" + votes + "');", function (err, result) {
+    if (err) console.log('fuuuuuuuck');
+    console.log(userId);
+    client.query("INSERT INTO questions (title, body, votes, user_id) VALUES ('" + title + "', '" + body + "', '" + votes + "', '" + userId + "');", function (err, result) {
       if (err) {
         console.log(err);
       }
 
-      res.send(201);
+      res.sendStatus(201);
+    });
+  });
+});
+
+router.get('/:question', function (req, res, next) {
+  var question = req.params.question;
+  var results = [];
+  pg.connect(conString, function (err, client, done) {
+    var query = client.query('SELECT users.username, questions.title, questions.id, questions.body, questions.votes FROM users, questions WHERE users.id = questions.user_id AND questions.id=\'' + question + '\';' );
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    query.on('end', function () {
+      console.log(results);
+      res.json(results);
     });
   });
 });

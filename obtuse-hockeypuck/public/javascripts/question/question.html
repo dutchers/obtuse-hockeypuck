@@ -1,0 +1,21 @@
+<div class="col-md-8 col-md-offset-2">
+  <div ng-repeat="question in data.question">
+
+    <h1>{{ question.title }}</h1>
+    {{ question.body }}
+
+  </div>
+</div>
+
+<div ng-controller="AnswersController">
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 answer">
+    <form ng-submit="answer()">
+      <div class="form-group">
+      <textarea name="answer" ng-model="data.answer" class="form-control" rows="5"></textarea>
+      </div>
+      <button type="submit" class="btn btn-success">Answer</button>
+    </form>
+  </div>
+</div>
+</div>

@@ -1,6 +1,10 @@
 <div class="col-md-10">
-  <div ng-repeat="question in data.questions">
-    {{ question.title }}
+  <div ng-repeat="questions in data">
+    <div class="row" ng-repeat="question in questions">
+      <div class="col-md-10 col-md-offset-1 question">
+        <li>{{ question.votes }} <h1><a href="#/questions/{{ question.id }}">{{ question.title }}</a></h1> {{ question.username }} </li>
+      </div>
+    </div>
   </div>
 </div>
 

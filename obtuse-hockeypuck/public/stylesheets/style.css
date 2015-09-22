@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'Gotham';
+  src: url('../assets/Gotham-Medium.otf');
+}
+
+@font-face {
+  font-family: 'Gotham light';
+  src: url('../assets/Gotham-Thin.otf');
+}
+
+
+.question {
+  border-bottom: 1px solid #efefef;
+  padding: 20px;
+
+}
+
+.question h1 {
+  font-size: 36px;
+  font-family: 'Gotham';
+  display: inline-block;
+}
+
+.answer {
+  margin-top: 50px;
+}
