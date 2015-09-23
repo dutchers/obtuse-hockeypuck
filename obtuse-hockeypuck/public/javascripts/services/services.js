@@ -40,6 +40,23 @@ angular.module('stackOverCho.services', [])
       }
     };
   }])
+  .factory('Answers', ['$http', function ($http) {
+    return {
+      sendAnswers: function (data) {
+        return $http.post('/api/answers/', {
+          data: data
+        }).success(function(res) {console.log(res); }).error(function(err) { console.log(err) });
+      },
+      getAnswers: function (data) {
+        return $http.get('/api/answers').success(function(res) {
+          data.answers = res;
+          return data;
+        }).error(function (err) {
+          console.log(err);
+        });
+      }
+    };
+  }])
   .factory('Questions', ['$http', '$location', function ($http, $location) {
     return {
       questions: function (data) {
@@ -55,7 +72,7 @@ angular.module('stackOverCho.services', [])
       },
       ask: function (data) {
         return $http({
-          url: 'api/questions',
+          url: 'api/questions/',
           method: 'POST',
           data: data
         }).then(function (res) {

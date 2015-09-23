@@ -1,4 +1,4 @@
-angular.module('stackOverCho', ['stackOverCho.questions', 'stackOverCho.login', 'stackOverCho.register', 'stackOverCho.ask', 'stackOverCho.user', 'stackOverCho.question', 'stackOverCho.services', 'ngRoute'])
+angular.module('stackOverCho', ['stackOverCho.questions', 'stackOverCho.login', 'stackOverCho.register', 'stackOverCho.ask', 'stackOverCho.user', 'stackOverCho.question', 'stackOverCho.answers', 'stackOverCho.services', 'ngRoute'])
   .config(function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/', {

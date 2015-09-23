@@ -8,7 +8,7 @@ var users = require('./routes/users');
 var login = require('./routes/login');
 var register = require('./routes/register');
 var questions = require('./routes/questions');
-
+var answers = require('./routes/answers');
 
 
 var pg = require('pg');
@@ -40,8 +40,8 @@ app.use('/', routes);
 app.use('/api/users', users);
 app.use('/api/login', login);
 app.use('/api/register', register);
-app.use('/api/questions', questions);
 app.use('/api/answers', answers);
+app.use('/api/questions', questions);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

@@ -15,12 +15,38 @@
 
 }
 
+.question-container {
+  margin-top: 75px;
+}
+
+.questions-container {
+  margin-top: 75px;
+}
+
+.votes {
+  width: 50px;
+  font-size: 32px;
+  padding-top: 15px;
+}
+
+.body {
+  max-width: 675px;
+}
+
+.question li {
+  list-style: none;
+}
 .question h1 {
-  font-size: 36px;
+  font-size: 24px;
   font-family: 'Gotham';
   display: inline-block;
 }
 
+.question-header h1 {
+  font-size: 32px;
+  margin-bottom: 50px;
+}
+
 .answer {
-  margin-top: 50px;
+  margin-top: 150px;
 }
